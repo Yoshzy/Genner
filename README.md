@@ -7,6 +7,8 @@ Projeto desenvolvido por um estudante, sinta-se à vontade para corrigir e agreg
 . Proprietário das apis : https://hgbrasil.com/ <br>
 . Edite o arquivo de configuração "Config.ini" na pasta Config, com os dados do seu mysql e se desejar por os dados smtp.<br>
 . Abra o arquivo de banco de dados e edite a conta de operador para seus dados e importe para seu mysql.
+Query para criar conta de operador.
+INSERT INTO `operadores`(`usuario`, `nome`, `senha`) VALUES ('SeuUser','SeuNome','SuaSenha')
 # Form de cadastros de clientes e Serviços.
 Conversor USD/EUR para BRL com descontos das tarifas do paypal inclusas.
 # Sistema de enviar e-mails para clientes.
