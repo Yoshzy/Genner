@@ -172,20 +172,5 @@ namespace Genner
             textBoxInfo.Clear();
             textBoxValor.Clear();
         }
-
-        private void Servicos_Enter(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void textBoxNome_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Servicos_Load_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }
