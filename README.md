@@ -18,7 +18,7 @@ Web/Net<br>
 
 # Versão 1.2 -> Em Breve.
 x . Sistema de chat para dar suporte aos clientes.<br>
-x . Status dos emuladores dos clientes, Ex: Cliente / Emulator Ativo , Fatura do mes paga.<br>
+x . Status dos emuladores dos clientes, Ex: Cliente / Emulator Ativo , Fatura do mês.<br>
 x . Enviar QRCode da fatura para o cliente pelo painel.<br>
 x . Gerar relatório em pdf ou impressão das vendas e dos serviços prestados e o lucro total.<br>
 
