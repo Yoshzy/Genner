@@ -27,13 +27,11 @@ namespace Genner.Data
                 }
                 db.conn.Close();
                 return valor;
-            }catch(Exception ex)
+            }catch(Exception)
             {
                 
                 return 0;
-                db.conn.Close();
             }
-           
         }
 
         public int ClientesV()
@@ -54,10 +52,10 @@ namespace Genner.Data
 
                 db.conn.Close();
                 return clientes;
-            }catch(Exception ex)
+            }catch(Exception)
             {
                 return 0;
-                db.conn.Close();
+               
             }
         }
     }
