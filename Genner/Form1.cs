@@ -29,7 +29,6 @@ namespace Genner
         {
 
             InitializeComponent();
-            CheckForIllegalCrossThreadCalls = false;
 
 
         }
@@ -37,11 +36,10 @@ namespace Genner
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            Thread td = new Thread(new ThreadStart(LoadApis));
-            td.Start();
             loadEmails();
             loadList();
-            
+            Thread loadApi = new Thread(new ThreadStart(LoadApis));
+            loadApi.Start();
             
 
         }
@@ -59,8 +57,6 @@ namespace Genner
             datatext.Text = DateTime.Now.ToShortDateString();
 
         }
-
-
         //converte Dollar para real ja descontando valor da taxa do paypal.
         private void RealUsd()
         {
@@ -142,121 +138,148 @@ namespace Genner
             }
         }
         //metodo que recarrega os valores das apis a cada 10 minutos.
-        private void LoadApis()
+        private async void LoadApis()
         {
-            try
-            {
-                while (true)
-                {
-                   
-                    Api cn = new Api();
-                    Consulta cs = new Consulta();
+           
+                    try
+                    {
+                        while (true)
+                        {
+
+                            Api cn = new Api();
+                            Consulta cs = new Consulta();
 
                     #region contadores
-                    
-                        faturamento.Text = cs.FaturamentoV().ToString("C");
-                        totalClientes.Text = cs.ClientesV().ToString() + " Clientes";
-                     
+                    faturamento.Invoke((Action)delegate
+                    {
+                       faturamento.Text = cs.FaturamentoV().ToString("C");
+                    });
 
-                     #endregion
+                    totalClientes.Invoke((Action)delegate
+                    {
+                        totalClientes.Text = cs.ClientesV().ToString() + " Clientes";
+                    });
+
+
+
+                    #endregion
 
                     #region BTC
-                    btctext.Text = cn.Btc().ToString("C");
-                    btctext.Update();
-                    btctext.Refresh();
+                    btctext.Invoke((Action)delegate
+                    {
+                        btctext.Text = cn.Btc().ToString("C");
+                        btctext.Update();
+                        btctext.Refresh();
+                    });
                     #endregion
 
                     #region Dollar
-
-                    textDollar.Text = cn.Usd().ToString("C");
-                    textDollar.Update();
-                    textDollar.Refresh();
+                    textDollar.Invoke((Action)delegate
+                    {
+                        textDollar.Text = cn.Usd().ToString("C");
+                        textDollar.Update();
+                        textDollar.Refresh();
+                    });
                     #endregion
 
                     #region Euro
-                    euroText.Text = cn.Eur().ToString("C");
-                    euroText.Update();
-                    euroText.Refresh();
+                    euroText.Invoke((Action)delegate
+                    {
+                        euroText.Text = cn.Eur().ToString("C");
+                        euroText.Update();
+                        euroText.Refresh();
+                    });
+
                     #endregion
 
                     #region clima
-                    switch (cn.Clima())
+                    boxTemp.Invoke((Action)delegate
                     {
-                        case 27:
-                        case 31:
-                            CClima(Environment.CurrentDirectory + @"\res\sol.png");
-                            break;
-                        case 26:
-                        case 28:
-                            CClima(Environment.CurrentDirectory + @"\res\nublado.png");
-                            break;
-                        case 29:
-                        case 30:
-                            CClima(Environment.CurrentDirectory + @"\res\parcial.png");
-                            break;
-                        case 37:
-                        case 47:
-                            CClima(Environment.CurrentDirectory + @"\res\tempestades.png");
-                            break;
-                        case 45:
-                        case 40:
-                            CClima(Environment.CurrentDirectory + @"\res\chuva.png");
-                            break;
-                        default:
-                            CClima(Environment.CurrentDirectory + @"\res\default.png");
-                            break;
-                    }
-                    boxTemp.Update();
-                    boxTemp.Refresh();
+                        switch (cn.Clima())
+                        {
+                            case 27:
+                            case 31:
+                                CClima(Environment.CurrentDirectory + @"\res\sol.png");
+                                break;
+                            case 26:
+                            case 28:
+                                CClima(Environment.CurrentDirectory + @"\res\nublado.png");
+                                break;
+                            case 29:
+                            case 30:
+                                CClima(Environment.CurrentDirectory + @"\res\parcial.png");
+                                break;
+                            case 37:
+                            case 47:
+                                CClima(Environment.CurrentDirectory + @"\res\tempestades.png");
+                                break;
+                            case 45:
+                            case 40:
+                                CClima(Environment.CurrentDirectory + @"\res\chuva.png");
+                                break;
+                            default:
+                                CClima(Environment.CurrentDirectory + @"\res\default.png");
+                                break;
+                        }
+                        boxTemp.Update();
+                        boxTemp.Refresh();
+                    });
 
                     #endregion
 
 
                     #region termostato
-                    termoText.Text = cn.Termo().ToString() + "°";
-                    termoText.Update();
-                    termoText.Refresh();
+                    termoText.Invoke((Action)delegate
+                    {
+                        termoText.Text = cn.Termo().ToString() + "°";
+                        termoText.Update();
+                        termoText.Refresh();
+                    });
                     #endregion
 
                     #region Clima Desc
-                    switch (cn.Clima())
+                    textDescLb.Invoke((Action)delegate
                     {
-                        case 27:
-                        case 31:
-                            textDescLb.Text = "Limpo";
-                            break;
-                        case 26:
-                        case 28:
-                            textDescLb.Text = "Nublado";
-                            break;
-                        case 29:
-                        case 30:
-                            textDescLb.Text = "Nublado Parcialmente";
-                            break;
-                        case 37:
-                        case 47:
-                            textDescLb.Text = "Tempestade";
-                            break;
-                        case 45:
-                        case 40:
-                            textDescLb.Text = "Chuva";
-                            break;
-                        default:
-                            textDescLb.Text = "Error Rain";
-                            break;
+                        switch (cn.Clima())
+                        {
+                            case 27:
+                            case 31:
+                                textDescLb.Text = "Limpo";
+                                break;
+                            case 26:
+                            case 28:
+                                textDescLb.Text = "Nublado";
+                                break;
+                            case 29:
+                            case 30:
+                                textDescLb.Text = "Nublado Parcialmente";
+                                break;
+                            case 37:
+                            case 47:
+                                textDescLb.Text = "Tempestade";
+                                break;
+                            case 45:
+                            case 40:
+                                textDescLb.Text = "Chuva";
+                                break;
+                            default:
+                                textDescLb.Text = "Error Rain";
+                                break;
+                        }
+                    });
+                            #endregion
+
+                            Thread.Sleep(TimeSpan.FromMinutes(10));
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
                     }
 
-                    #endregion
 
-                    Thread.Sleep(TimeSpan.FromMinutes(10));
-                }
 
-            }catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            
         }
         //metodo que chama formulario de login.
         private void btnOperator_Click(object sender, EventArgs e)
@@ -285,7 +308,7 @@ namespace Genner
                 }
 
                 db.conn.Close();
-                }catch(Exception ex)
+                }catch(Exception)
             {
                 comboUsers.Text = "";
                 db.conn.Close();
@@ -419,4 +442,5 @@ namespace Genner
 
         }
     }
+
 }
