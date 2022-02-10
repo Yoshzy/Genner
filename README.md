@@ -8,7 +8,7 @@ Projeto desenvolvido por um estudante, sinta-se à vontade para corrigir e agreg
 . Edite o arquivo de configuração "Config.ini" na pasta Config, com os dados do seu mysql e se desejar por os dados smtp.<br>
 . Abra o arquivo de banco de dados e edite a conta de operador para seus dados e importe para seu mysql.
 # Form de cadastros de clientes e Serviços.
-# Conversor USD/EUR para BRL com descontos das tarifas do paypal inclusas.
+Conversor USD/EUR para BRL com descontos das tarifas do paypal inclusas.
 # Sistema de enviar e-mails para clientes.
 . Configure os dados do seu smtp no botão de opções ou no arquivo de configuração.
 # LIBS USADAS.
@@ -17,10 +17,10 @@ MYSQL<br>
 Web/Net<br>
 
 # Versão 1.2 -> Em Breve.
-x . Sistema de chat para dar suporte aos clientes.
-x . Status dos emuladores dos clientes, Ex: Cliente / Emulator Ativo , Fatura do mes paga.
-x . Enviar QRCode da fatura para o cliente pelo painel.
-x . Gerar relatório em pdf ou impressão das vendas e dos serviços prestados e o lucro total.
+x . Sistema de chat para dar suporte aos clientes.<br>
+x . Status dos emuladores dos clientes, Ex: Cliente / Emulator Ativo , Fatura do mes paga.<br>
+x . Enviar QRCode da fatura para o cliente pelo painel.<br>
+x . Gerar relatório em pdf ou impressão das vendas e dos serviços prestados e o lucro total.<br>
 
 # Screens
 
