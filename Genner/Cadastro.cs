@@ -26,12 +26,6 @@ namespace Genner
         {
             
         }
-
-        private void textBoxNome_TextChanged(object sender, EventArgs e)
-        {
-           
-        }
-
         private void textBoxNome_Enter(object sender, EventArgs e)
         {
             string fnome = textBoxNome.Text;
@@ -50,11 +44,6 @@ namespace Genner
                 textBoxNome.Text = "nome";
                 textBoxNome.ForeColor = Color.Gray;
             }
-        }
-
-        private void textBoxSobrenome_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void textBoxEmail_Enter(object sender, EventArgs e)
@@ -137,11 +126,6 @@ namespace Genner
                 textBoxDiscord.Text = "discord";
                 textBoxDiscord.ForeColor = Color.Gray;
             }
-        }
-
-        private void textBoxKey_TextChanged(object sender, EventArgs e)
-        {
-
         }
         //botao de cadastro.
         private void btnCadastrar_Click(object sender, EventArgs e)
